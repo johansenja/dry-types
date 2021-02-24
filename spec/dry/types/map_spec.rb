@@ -178,6 +178,34 @@ RSpec.describe Dry::Types::Map do
     end
   end
 
+  context "with a nested map" do
+    # let(:cleaned_string) do
+    #   Dry::Types["strict.string"].constructor do |x|
+    #     x.is_a?(String) ? x.gsub(/\s+/, " ").strip.downcase : x
+    #   end
+    # end
+
+    # let(:map) do
+    #   Dry::Types::Map.new(
+    #     ::Hash,
+    #     key_type: cleaned_string.constrained(format: /\Aopt_/),
+    #     value_type: Dry::Types["strict.bool"],
+    #   )
+    # end
+
+    # describe "#call" do
+    #   context "with an invalid payload" do
+    #     it "raises MultipleError" do
+    #     end
+    #   end
+
+    #   context "with a valid payload" do
+    #     it "returns Result::Success" do
+    #     end
+    #   end
+    # end
+  end
+
   describe "#to_s" do
     subject(:type) { Dry::Types["nominal.hash"].map("nominal.string", "nominal.integer") }
 

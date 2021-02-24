@@ -56,7 +56,7 @@ module Dry
 
       # @return string
       def message
-        errors.map { |e| e.is_a?(String) ? e : e.message }.join(", ")
+        errors.map(&:message).join(", ")
       end
 
       # @return [Array]

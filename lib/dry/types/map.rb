@@ -115,11 +115,13 @@ module Dry
           res_v = value_type.try(v)
 
           if res_k.failure?
-            failures << res_k.error
+            error = res_k.error
+            failures << (error.is_a?(String) ? MapError.new(error) : error)
           elsif output.key?(res_k.input)
             failures << CoercionError.new("duplicate coerced hash key #{res_k.input.inspect}")
           elsif res_v.failure?
-            failures << res_v.error
+            error = res_v.error
+            failures << (error.is_a?(String) ? MapError.new(res_v.error) : error)
           else
             output[res_k.input] = res_v.input
           end
